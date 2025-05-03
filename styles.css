@@ -1,0 +1,84 @@
+    /* -------- base -------- */
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: system-ui, sans-serif;
+        margin: 1.2rem;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+        margin-bottom: .8rem;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 8rem;
+        resize: vertical;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li.s-item {
+        display: flex;
+        align-items: flex-start;
+        margin: .4rem 0;
+    }
+
+    button.spk,
+    button.trn {
+        margin-right: .5rem;
+    }
+
+    span.jp {
+        display: none;
+        color: #0a84ff;
+        margin-left: .6rem;
+    }
+
+    .blind {
+        filter: blur(6px) grayscale(.9);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    /* -------- control panel -------- */
+    #controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem .8rem;
+        align-items: center;
+        margin: .8rem 0;
+    }
+
+    #controls>* {
+        flex: 0 0 auto;
+    }
+
+    /* speed slider */
+    #speedVal {
+        width: 2.7rem;
+        text-align: center;
+        display: inline-block;
+    }
+
+    /* -------- responsive tweaks -------- */
+    @media (max-width: 550px) {
+        li.s-item {
+            flex-direction: column;
+        }
+
+        button.trn {
+            margin-top: .4rem;
+        }
+    }
