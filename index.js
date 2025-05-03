@@ -15,11 +15,17 @@ function ensureVoice(cb) {
 }
 
 /* ---------- helpers ---------- */
-const speedEl = document.getElementById("speedSlider");
-const speedVal = document.getElementById("speedVal");
-speedEl.oninput = (e) =>
-    (speedVal.textContent = parseFloat(e.target.value).toFixed(1));
-const getRate = () => parseFloat(speedEl.value);
+let speechRate = 1.0;
+document.querySelectorAll(".speed-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        // 選択中のボタンをハイライト
+        document.querySelectorAll(".speed-btn")
+            .forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        // data-rate 属性から数値を取得
+        speechRate = parseFloat(btn.dataset.rate);
+    });
+});
 
 function splitSentences(t) {
     return (
@@ -87,7 +93,7 @@ function speak(txt) {
         const ut = new SpeechSynthesisUtterance(txt);
         ut.voice = enVoice;
         ut.lang = enVoice.lang;
-        ut.rate = getRate();
+        ut.rate = speechRate;
         synth.speak(ut);
     });
 }
@@ -103,7 +109,7 @@ function playAll(isBlind) {
         );
         ut.voice = enVoice;
         ut.lang = enVoice.lang;
-        ut.rate = getRate();
+        ut.rate = speechRate;
         ut.onend = unBlind;
         synth.speak(ut);
     });
