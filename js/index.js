@@ -1,18 +1,4 @@
-/* ---------- Speech Synthesis  ---------- */
-const synth = speechSynthesis;
-let enVoice = null;
-function ensureVoice(cb) {
-    const load = () => {
-        const vs = synth.getVoices().filter((v) => /^en\b/i.test(v.lang));
-        if (vs.length) {
-            enVoice = vs[0];
-            synth.removeEventListener("voiceschanged", load);
-            cb();
-        }
-    };
-    load();
-    synth.addEventListener("voiceschanged", load);
-}
+import { speechService } from './speechService.js';
 
 /* ---------- helpers ---------- */
 let speechRate = 1.0;
@@ -50,7 +36,7 @@ function buildList() {
             p.className = "spk";
             p.onclick = () => {
                 unBlind();
-                speak(sentence);
+                speechService.speakSentence(sentence, speechRate);
             };
 
             const t = document.createElement("button");
@@ -86,35 +72,6 @@ function buildList() {
     );
 }
 
-/* ---------- speech ---------- */
-function speak(txt) {
-    ensureVoice(() => {
-        synth.cancel();
-        const ut = new SpeechSynthesisUtterance(txt);
-        ut.voice = enVoice;
-        ut.lang = enVoice.lang;
-        ut.rate = speechRate;
-        synth.speak(ut);
-    });
-}
-
-function playAll(isBlind) {
-    const txt = document.getElementById("textInput").value.trim();
-    if (!txt) return;
-    ensureVoice(() => {
-        synth.cancel();
-        if (isBlind) doBlind();
-        const ut = new SpeechSynthesisUtterance(
-            txt.replace(/\s+/g, " ").trim()
-        );
-        ut.voice = enVoice;
-        ut.lang = enVoice.lang;
-        ut.rate = speechRate;
-        ut.onend = unBlind;
-        synth.speak(ut);
-    });
-}
-
 /* ---------- blind mode ---------- */
 let blindOn = false;
 function doBlind() {
@@ -134,11 +91,18 @@ function unBlind() {
 document.getElementById("makeBtn").onclick = buildList;
 document.getElementById("playAllBtn").onclick = () => {
     unBlind();
-    playAll(false);
+    const text = document.getElementById("textInput").value.trim();
+    if (!text) return;
+    speechService.playAllText(text, speechRate, unBlind);
 };
-document.getElementById("blindPlayBtn").onclick = () => playAll(true);
+document.getElementById("blindPlayBtn").onclick = () => {
+    const text = document.getElementById("textInput").value.trim();
+    if (!text) return;
+    doBlind();
+    speechService.playAllText(text, speechRate, unBlind);
+}
 document.getElementById("stopBtn").onclick = () => {
-    synth.cancel();
+    speechService.synth.cancel();
     unBlind();
 };
 
@@ -147,7 +111,7 @@ const SAMPLE =
     "Tom is hungry after work. He walks into a small noodle shop near the station. The cook smiles and says, “Good evening!” Tom looks at the menu on the wall. He chooses a bowl of chicken ramen and a green tea. While he waits, Tom checks his phone. Soon, the ramen arrives. It smells great, and Tom feels happy.";
 document.getElementById("sampleBtn").onclick = () => {
     unBlind();
-    synth.cancel();
+    speechService.synth.cancel();
     document.getElementById("textInput").value = SAMPLE;
     document.getElementById("list").innerHTML = "";
 };
