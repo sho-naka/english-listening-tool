@@ -1,4 +1,5 @@
 import { speechService } from './speechService.js';
+import { translationService } from './translationService.js';
 
 /* ---------- helpers ---------- */
 let speechRate = 1.0;
@@ -46,25 +47,15 @@ function buildList() {
             jp.className = "jp";
             t.onclick = async () => {
                 if (!jp.textContent) {
-                    t.disabled = true;
-                    t.textContent = "…";
-                    try {
-                        const r = await fetch(
-                            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
-                                sentence
-                            )}&langpair=en|ja`
-                        ).then((r) => r.json());
-                        jp.textContent =
-                            r.responseData.translatedText || "（取得失敗）";
-                    } catch {
-                        jp.textContent = "（取得失敗）";
-                    }
-                    t.disabled = false;
-                    t.textContent = "訳";
+                  t.disabled = true;
+                  t.textContent = "…";
+                  jp.textContent = await translationService.translate(sentence);
+                  t.disabled = false;
+                  t.textContent = "訳";
                 }
                 jp.style.display =
-                    jp.style.display === "inline" ? "none" : "inline";
-            };
+                  jp.style.display === "inline" ? "none" : "inline";
+              };
 
             li.append(p, t, document.createTextNode(sentence), jp);
             ul.appendChild(li);
