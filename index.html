@@ -25,14 +25,23 @@
   </div>
 
   <!-- コントロール -->
-  <div id="controls" class="d-flex flex-wrap align-items-center gap-2 mb-4">
-    <label class="form-label me-2 mb-0">速度:</label>
-    <button class="speed-btn btn btn-outline-secondary" data-rate="0.8">ゆっくり</button>
-    <button class="speed-btn btn btn-outline-secondary selected" data-rate="1.0">通常</button>
-    <button id="makeBtn" class="btn btn-success">文リスト作成</button>
-    <button id="playAllBtn" class="btn btn-info">全文を再生 🔊</button>
-    <button id="blindPlayBtn" class="btn btn-warning">ブラインド再生 👂</button>
-    <button id="stopBtn" class="btn btn-danger">停止 ⏹️</button>
+  <div id="controls" class="mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <label class="form-label mb-0">速度:</label>
+      <div class="btn-group" role="group" aria-label="速度選択">
+        <input type="radio" class="btn-check" name="speed" id="speedSlow" autocomplete="off" data-rate="0.8">
+        <label class="btn btn-outline-secondary" for="speedSlow">ゆっくり</label>
+
+        <input type="radio" class="btn-check" name="speed" id="speedNormal" autocomplete="off" data-rate="1.0" checked>
+        <label class="btn btn-outline-secondary" for="speedNormal">通常</label>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+      <button id="makeBtn" class="btn btn-success flex-grow-1">文リスト作成</button>
+      <button id="playAllBtn" class="btn btn-info flex-grow-1">全文を再生 🔊</button>
+      <button id="blindPlayBtn" class="btn btn-warning flex-grow-1">ブラインド再生 👂</button>
+      <button id="stopBtn" class="btn btn-danger flex-grow-1">停止 ⏹️</button>
+    </div>
   </div>
 
   <!-- 文リスト -->
