@@ -6,13 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #F9FAFB;
+    }
+    .btn-primary-custom {
+      background-color: #0A84FF;
+      border-color: #0A84FF;
+      color: #fff;
+    }
+    .btn-primary-custom:hover, .btn-primary-custom:focus {
+      background-color: #006edc;
+      border-color: #006edc;
+      color: #fff;
+    }
+    .btn-secondary-custom {
+      background-color: #14B8A6;
+      border-color: #14B8A6;
+      color: #fff;
+    }
+    .btn-secondary-custom:hover, .btn-secondary-custom:focus {
+      background-color: #109488;
+      border-color: #109488;
+      color: #fff;
+    }
+    .btn-danger-custom {
+      background-color: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+    .btn-danger-custom:hover, .btn-danger-custom:focus {
+      background-color: #c72c2c;
+      border-color: #c72c2c;
+      color: #fff;
+    }
+    .section-bg {
+      background-color: #F9FAFB;
+    }
+    .btn-outline-secondary-custom {
+      color: #0A84FF;
+      border-color: #0A84FF;
+      background-color: #fff;
+    }
+    .btn-outline-secondary-custom:hover, .btn-outline-secondary-custom.active, .btn-outline-secondary-custom:active, .btn-check:checked + .btn-outline-secondary-custom {
+      background-color: #0A84FF;
+      color: #fff;
+      border-color: #0A84FF;
+    }
+  </style>
 </head>
-<body class="container my-4">
+<body class="container my-4 section-bg">
   <h1 class="text-center mb-4">英語リスニング練習ツール</h1>
 
   <!-- サンプル読込 -->
   <div class="text-center mb-3">
-    <button id="sampleBtn" class="btn btn-primary">📑 サンプルを読み込む</button>
+    <button id="sampleBtn" class="btn btn-primary-custom">📑 サンプルを読み込む</button>
   </div>
 
   <!-- 入力 -->
@@ -30,22 +78,22 @@
       <label class="form-label mb-0">速度:</label>
       <div class="btn-group" role="group" aria-label="速度選択">
         <input type="radio" class="btn-check" name="speed" id="speedSlow" autocomplete="off" data-rate="0.8">
-        <label class="btn btn-outline-secondary" for="speedSlow">ゆっくり</label>
+        <label class="btn btn-outline-secondary-custom" for="speedSlow">ゆっくり</label>
 
         <input type="radio" class="btn-check" name="speed" id="speedNormal" autocomplete="off" data-rate="1.0" checked>
-        <label class="btn btn-outline-secondary" for="speedNormal">通常</label>
+        <label class="btn btn-outline-secondary-custom" for="speedNormal">通常</label>
       </div>
     </div>
-    <div class="d-flex flex-wrap gap-2">
-      <button id="makeBtn" class="btn btn-success flex-grow-1">文リスト作成</button>
-      <button id="playAllBtn" class="btn btn-info flex-grow-1">全文を再生 🔊</button>
-      <button id="blindPlayBtn" class="btn btn-warning flex-grow-1">ブラインド再生 👂</button>
-      <button id="stopBtn" class="btn btn-danger flex-grow-1">停止 ⏹️</button>
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <button id="makeBtn" class="btn btn-secondary-custom flex-grow-1">文リスト作成</button>
+      <button id="playAllBtn" class="btn btn-primary-custom flex-grow-1">全文を再生 🔊</button>
+      <button id="blindPlayBtn" class="btn btn-secondary-custom flex-grow-1">ブラインド再生 👂</button>
+      <button id="stopBtn" class="btn btn-danger-custom flex-grow-1">停止 ⏹️</button>
     </div>
   </div>
 
   <!-- 文リスト -->
-  <div id="sentenceArea" class="border p-3 rounded">
+  <div id="sentenceArea" class="border p-3 rounded section-bg">
     <ul id="list" class="list-group"></ul>
   </div>
 
