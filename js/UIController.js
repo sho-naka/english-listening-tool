@@ -41,16 +41,30 @@ export class UIController {
         this.splitSentences(document.getElementById("textInput").value).forEach(
             (sentence) => {
                 const li = document.createElement("li");
-                li.className = "s-item";
+                li.className = "list-group-item";
 
+                const sItem = document.createElement("div");
+                sItem.className = "s-item";
+
+                // 英文
+                const en = document.createElement("span");
+                en.className = "en";
+                en.textContent = sentence;
+
+                // ボタンエリア
+                const btnArea = document.createElement("div");
+                btnArea.className = "btn-area";
+
+                // 再生ボタン
                 const p = document.createElement("button");
-                p.textContent = "🔊";
+                p.textContent = "再生";
                 p.className = "spk";
                 p.onclick = () => {
                     this.unBlind();
                     speechService.speakSentence(sentence, this.speechRate);
                 };
 
+                // 訳ボタン
                 const t = document.createElement("button");
                 t.textContent = "訳";
                 t.className = "trn";
@@ -64,11 +78,17 @@ export class UIController {
                         t.disabled = false;
                         t.textContent = "訳";
                     }
-                    jp.style.display =
-                        jp.style.display === "inline" ? "none" : "inline";
+                    jp.classList.toggle("active");
                 };
 
-                li.append(p, t, document.createTextNode(sentence), jp);
+                btnArea.appendChild(p);
+                btnArea.appendChild(t);
+
+                sItem.appendChild(en);
+                sItem.appendChild(btnArea);
+                sItem.appendChild(jp);
+
+                li.appendChild(sItem);
                 ul.appendChild(li);
             }
         );

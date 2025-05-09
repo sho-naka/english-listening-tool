@@ -6,97 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #F9FAFB;
-    }
-    .btn-primary-custom {
-      background-color: #0A84FF;
-      border-color: #0A84FF;
-      color: #fff;
-    }
-    .btn-primary-custom:hover, .btn-primary-custom:focus {
-      background-color: #006edc;
-      border-color: #006edc;
-      color: #fff;
-    }
-    .btn-secondary-custom {
-      background-color: #14B8A6;
-      border-color: #14B8A6;
-      color: #fff;
-    }
-    .btn-secondary-custom:hover, .btn-secondary-custom:focus {
-      background-color: #109488;
-      border-color: #109488;
-      color: #fff;
-    }
-    .btn-danger-custom {
-      background-color: #EF4444;
-      border-color: #EF4444;
-      color: #fff;
-    }
-    .btn-danger-custom:hover, .btn-danger-custom:focus {
-      background-color: #c72c2c;
-      border-color: #c72c2c;
-      color: #fff;
-    }
-    .section-bg {
-      background-color: #F9FAFB;
-    }
-    .btn-outline-secondary-custom {
-      color: #0A84FF;
-      border-color: #0A84FF;
-      background-color: #fff;
-    }
-    .btn-outline-secondary-custom:hover, .btn-outline-secondary-custom.active, .btn-outline-secondary-custom:active, .btn-check:checked + .btn-outline-secondary-custom {
-      background-color: #0A84FF;
-      color: #fff;
-      border-color: #0A84FF;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
 </head>
-<body class="container my-4 section-bg">
-  <h1 class="text-center mb-4">英語リスニング練習ツール</h1>
+<body class="material-bg">
+  <main class="container py-4">
+    <div class="mx-auto" style="max-width: 800px;">
+      <div class="material-card p-4 mb-4">
+        <h1 class="material-title mb-3 text-center">英語リスニング練習ツール</h1>
+        <form>
+          <div class="mb-3">
+            <label for="textInput" class="form-label material-label">英文を入力</label>
+            <textarea
+              id="textInput"
+              class="form-control material-textarea"
+              rows="4"
+              placeholder="ここに英文を入力してください"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="material-label mb-2">再生速度</label>
+            <div class="d-flex gap-3 align-items-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input material-radio" type="radio" name="speed" id="speedSlow" data-rate="0.8">
+                <label class="form-check-label" for="speedSlow">ゆっくり</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input material-radio" type="radio" name="speed" id="speedNormal" data-rate="1.0" checked>
+                <label class="form-check-label" for="speedNormal">標準</label>
+              </div>
+            </div>
+          </div>
+          <!-- ボタン行を中央揃えに修正 -->
+          <div class="button-row mb-2">
+            <button id="makeBtn" type="button" class="btn material-btn-secondary">文リスト作成</button>
+            <button id="playAllBtn" type="button" class="btn material-btn-primary">全文を再生</button>
+            <button id="blindPlayBtn" type="button" class="btn material-btn-secondary">ブラインド再生</button>
+            <button id="stopBtn" type="button" class="btn material-btn-danger">停止</button>
+          </div>
+        </form>
+      </div>
+      <div id="sentenceArea" class="material-card p-3">
+        <ul id="list" class="list-group list-group-flush">
 
-  <!-- サンプル読込 -->
-  <div class="text-center mb-3">
-    <button id="sampleBtn" class="btn btn-primary-custom">📑 サンプルを読み込む</button>
-  </div>
-
-  <!-- 入力 -->
-  <div class="mb-3">
-    <textarea
-      id="textInput"
-      class="form-control"
-      rows="4"
-      placeholder="ここに英文を入力してください"></textarea>
-  </div>
-
-  <!-- コントロール -->
-  <div id="controls" class="mb-4">
-    <div class="d-flex align-items-center gap-3">
-      <label class="form-label mb-0">速度:</label>
-      <div class="btn-group" role="group" aria-label="速度選択">
-        <input type="radio" class="btn-check" name="speed" id="speedSlow" autocomplete="off" data-rate="0.8">
-        <label class="btn btn-outline-secondary-custom" for="speedSlow">ゆっくり</label>
-
-        <input type="radio" class="btn-check" name="speed" id="speedNormal" autocomplete="off" data-rate="1.0" checked>
-        <label class="btn btn-outline-secondary-custom" for="speedNormal">通常</label>
+        </ul>
       </div>
     </div>
-    <div class="d-flex flex-wrap gap-2 mt-3">
-      <button id="makeBtn" class="btn btn-secondary-custom flex-grow-1">文リスト作成</button>
-      <button id="playAllBtn" class="btn btn-primary-custom flex-grow-1">全文を再生 🔊</button>
-      <button id="blindPlayBtn" class="btn btn-secondary-custom flex-grow-1">ブラインド再生 👂</button>
-      <button id="stopBtn" class="btn btn-danger-custom flex-grow-1">停止 ⏹️</button>
-    </div>
-  </div>
-
-  <!-- 文リスト -->
-  <div id="sentenceArea" class="border p-3 rounded section-bg">
-    <ul id="list" class="list-group"></ul>
-  </div>
-
+  </main>
   <script type="module" src="js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

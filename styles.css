@@ -1,102 +1,459 @@
-/* -------- base -------- */
-* {
-    box-sizing: border-box;
+/* Material Design base */
+body, .material-bg {
+    background: #F5F7FA;
+    font-family: 'Roboto', 'Noto Sans JP', system-ui, sans-serif;
+    color: #222;
 }
 
-body {
-    font-family: system-ui, sans-serif;
-    margin: 1.2rem;
-    line-height: 1.5;
+.material-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+    border: none;
+    max-width: 1200px; /* さらに広く */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h1 {
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-    margin-bottom: .8rem;
+.material-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+    color: #222;
 }
 
-button {
-    cursor: pointer;
+.material-label {
+    font-weight: 500;
+    color: #555;
+    letter-spacing: .01em;
 }
 
-textarea {
-    width: 100%;
-    min-height: 8rem;
-    resize: vertical;
+.material-textarea {
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    background: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(60,60,60,0.03);
+}
+.material-textarea:focus {
+    outline: none;
+    border-color: #0A84FF;
+    box-shadow: 0 2px 8px rgba(10,132,255,0.08);
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+/* メイン操作ボタンの視認性向上 */
+.material-btn-fab,
+.material-btn-primary,
+.material-btn-secondary,
+.material-btn-danger {
+    font-size: 1.13rem;
+    font-weight: 700;
+    padding: 0.95rem 2.2rem;
+    border-radius: 28px;
+    box-shadow: 0 4px 18px rgba(10,132,255,0.13);
+    letter-spacing: .02em;
+    min-width: 140px;
+    max-width: 320px;
+    width: auto;
+    margin-bottom: 0;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    transition: box-shadow 0.2s, background 0.2s, color 0.2s, filter 0.2s;
+    filter: brightness(1);
+}
+.material-btn-primary {
+    background-color: #0A84FF;
+    color: #fff;
+}
+.material-btn-primary:hover, .material-btn-primary:focus {
+    background-color: #006edc;
+    color: #fff;
+    filter: brightness(1.07);
+}
+.material-btn-secondary {
+    background-color: #14B8A6;
+    color: #fff;
+}
+.material-btn-secondary:hover, .material-btn-secondary:focus {
+    background-color: #109488;
+    color: #fff;
+    filter: brightness(1.07);
+}
+.material-btn-danger {
+    background-color: #EF4444;
+    color: #fff;
+}
+.material-btn-danger:hover, .material-btn-danger:focus {
+    background-color: #c72c2c;
+    color: #fff;
+    filter: brightness(1.07);
 }
 
-li.s-item {
-    display: flex;
-    align-items: flex-start;
-    margin: .4rem 0;
-}
-
-button.spk,
-button.trn {
-    margin-right: .5rem;
-}
-
-span.jp {
-    display: none;
-    color: #0a84ff;
-    margin-left: .6rem;
-}
-
-.blind {
-    filter: blur(6px) grayscale(.9);
+/* Material ripple effect for buttons */
+.material-btn-fab::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
     pointer-events: none;
-    user-select: none;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    opacity: 0;
+    background: rgba(255,255,255,0.3);
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+.material-btn-fab:active::after {
+    opacity: 1;
+    transition: opacity 0s;
 }
 
-/* -------- control panel -------- */
-#controls {
+/* 文リスト（Material Design List）最適化 */
+#sentenceArea {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+    border-radius: 18px;
+    border: none;
+    margin-top: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem 0;
+}
+
+#list {
+    padding: 0;
+    margin: 0;
+}
+
+#list .list-group-item {
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.3rem 2rem 1.1rem 2rem;
+    font-size: 1.12rem;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: background 0.15s, box-shadow 0.15s;
+    border-radius: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 1px 4px rgba(60,60,60,0.04);
+    position: relative;
+}
+
+#list .list-group-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#list .list-group-item:hover {
+    background: #f3f8fd;
+    box-shadow: 0 4px 16px rgba(252, 253, 253, 0.1);
+}
+
+#list .s-item {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+/* 英文部分 */
+#list .s-item .en {
+    display: block;
+    font-size: 1.13rem;
+    color: #222;
+    font-weight: 500;
+    margin-bottom: 0.3em;
+    word-break: break-word;
+    line-height: 1.7;
+    padding-left: 0.1em;
+    letter-spacing: 0.01em;
+    width: 100%;
+}
+
+/* ボタンを横並びにする */
+#list .s-item .btn-area {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    margin-bottom: 0.3em;
+}
+
+#list .s-item button {
+    border-radius: 18px;
+    font-size: 0.99rem;
+    padding: 0.38rem 1.15rem;
+    background: #f5f7fa;
+    color: #0A84FF;
+    border: 1.5px solid #e0e0e0;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    box-shadow: 0 1px 2px rgba(10,132,255,0.03);
+    outline: none;
+    min-width: 80px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+/* スピーチバブル（吹き出し）最適化 */
+.bubble {
+    position: relative;
+    background: #f1f1f1;
+    border-radius: 18px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    max-width: 80%;
+    box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+.bubble:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #f1f1f1;
+}
+
+.bubble.user {
+    background: #dcf8c6;
+    color: #333;
+}
+
+.bubble.user:after {
+    border-color: transparent transparent transparent #dcf8c6;
+}
+
+/* スピーチバブル内ボタン */
+.bubble button {
+    border-radius: 18px;
+    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+    background: #0A84FF;
+    color: #fff;
+    border: none;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(10,132,255,0.2);
+    outline: none;
+}
+.bubble button:hover, .bubble button:focus {
+    background: #006edc;
+    transform: translateY(-1px);
+}
+
+/* ユーザー入力エリア */
+#userInputArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#userInput {
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    background: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(60,60,60,0.03);
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+#userInput:focus {
+    outline: none;
+    border-color: #0A84FF;
+    box-shadow: 0 2px 8px rgba(10,132,255,0.08);
+}
+
+#submitBtn {
+    font-size: 1.13rem;
+    font-weight: 700;
+    padding: 0.95rem 2.2rem;
+    border-radius: 28px;
+    box-shadow: 0 4px 18px rgba(10,132,255,0.13);
+    letter-spacing: .02em;
+    min-width: 140px;
+    max-width: 320px;
+    width: auto;
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    transition: box-shadow 0.2s, background 0.2s, color 0.2s, filter 0.2s;
+    filter: brightness(1);
+    background-color: #0A84FF;
+    color: #fff;
+}
+#submitBtn:hover, #submitBtn:focus {
+    background-color: #006edc;
+    color: #fff;
+    filter: brightness(1.07);
+}
+
+/* ボタンを中央揃えにする */
+.button-row,
+.button-row2 {
     display: flex;
     flex-wrap: wrap;
-    gap: .6rem .8rem;
-    align-items: center;
-    margin: .8rem 0;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-#controls>* {
-    flex: 0 0 auto;
-}
-
-/* speed slider */
-#speedVal {
-    width: 2.7rem;
-    text-align: center;
-    display: inline-block;
-}
-
-/* -------- speed buttons -------- */
-.speed-btn {
-    padding: 0.5rem;
-    min-width: 80px;
-    border: 2px solid #ccc;
-    background: #fff;
-    border-radius: 4px;
-    font-weight: normal;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.speed-btn.selected {
-    background: #007acc;
-    border-color: #005a9e;
-    color: #fff;
-    font-weight: bold;
-}
-
-/* -------- responsive tweaks -------- */
-@media (max-width: 550px) {
-    li.s-item {
-        flex-direction: column;
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .material-card {
+        border-radius: 12px;
     }
 
-    button.trn {
-        margin-top: .4rem;
+    .material-title {
+        font-size: 1.4rem;
+    }
+
+    .material-label {
+        font-size: 0.9rem;
+    }
+
+    .material-textarea {
+        font-size: 0.9rem;
+    }
+
+    .material-btn-fab,
+    .material-btn-primary,
+    .material-btn-secondary,
+    .material-btn-danger {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 24px;
+    }
+
+    #sentenceArea {
+        padding: 0.3rem 0;
+    }
+
+    #list .list-group-item {
+        padding: 1rem 1.5rem 0.9rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    #list .s-item button {
+        font-size: 0.9rem;
+        padding: 0.35rem 1rem;
+    }
+
+    .bubble {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .bubble button {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.8rem;
+    }
+
+    #userInput {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    #submitBtn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 24px;
+    }
+}
+
+/* タブレット対応 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .material-card {
+        border-radius: 14px;
+    }
+
+    .material-title {
+        font-size: 1.5rem;
+    }
+
+    .material-label {
+        font-size: 1rem;
+    }
+
+    .material-textarea {
+        font-size: 1rem;
+    }
+
+    .material-btn-fab,
+    .material-btn-primary,
+    .material-btn-secondary,
+    .material-btn-danger {
+        font-size: 1.1rem;
+        padding: 0.9rem 2rem;
+        border-radius: 26px;
+    }
+
+    #sentenceArea {
+        padding: 0.4rem 0;
+    }
+
+    #list .list-group-item {
+        padding: 1.2rem 1.8rem 1rem 1.8rem;
+        font-size: 1.05rem;
+    }
+
+    #list .s-item button {
+        font-size: 0.95rem;
+        padding: 0.4rem 1.2rem;
+    }
+
+    .bubble {
+        padding: 0.9rem;
+        font-size: 1.1rem;
+    }
+
+    .bubble button {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.9rem;
+    }
+
+    #userInput {
+        font-size: 1rem;
+        padding: 0.9rem;
+    }
+
+    #submitBtn {
+        font-size: 1.1rem;
+        padding: 0.9rem 2rem;
+        border-radius: 26px;
     }
 }
