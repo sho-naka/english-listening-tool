@@ -93,6 +93,16 @@ body, .material-bg {
     filter: brightness(1.07);
 }
 
+/* 小さめのボタン用 */
+.material-btn-small {
+    font-size: 0.95rem;
+    padding: 0.45rem 1.2rem;
+    border-radius: 20px;
+    min-width: 80px;
+    max-width: 160px;
+    box-shadow: 0 2px 8px rgba(10,132,255,0.10);
+}
+
 /* Material ripple effect for buttons */
 .material-btn-fab::after {
     content: "";
@@ -330,6 +340,26 @@ body, .material-bg {
     gap: 1rem;
     justify-content: center;
     margin-bottom: 1rem;
+}
+
+/* Material Design select box */
+.material-select {
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    background: #fff;
+    padding: 0.7rem 1.5rem 0.7rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(60,60,60,0.03);
+    outline: none;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    min-width: 140px;
+    max-width: 320px;
+}
+.material-select:focus {
+    border-color: #0A84FF;
+    box-shadow: 0 2px 8px rgba(10,132,255,0.08);
 }
 
 /* レスポンシブ対応 */

@@ -3,7 +3,12 @@ import { translationService } from './translationService.js';
 
 export class UIController {
     constructor() {
-        this.speechRate = 1.0;
+        // 速度ラジオボタンの状態で初期値を決定
+        if (document.getElementById('speedSlow')?.checked) {
+            this.speechRate = 0.8;
+        } else {
+            this.speechRate = 1.0;
+        }
         this.blindOn = false;
         this.initEventListeners();
     }
@@ -15,9 +20,7 @@ export class UIController {
 
         document.getElementById("makeBtn").onclick = () => this.buildList();
         document.getElementById("playAllBtn").onclick = () => this.playAll();
-        document.getElementById("blindPlayBtn").onclick = () => this.blindPlay();
         document.getElementById("stopBtn").onclick = () => this.stopSpeech();
-        document.getElementById("sampleBtn").onclick = () => this.loadSample();
     }
 
     changeSpeechRate(btn) {
@@ -61,7 +64,14 @@ export class UIController {
                 p.className = "spk";
                 p.onclick = () => {
                     this.unBlind();
-                    speechService.speakSentence(sentence, this.speechRate);
+                    // ここで毎回ラジオボタンから速度を取得
+                    let rate = 1.0;
+                    if (document.getElementById('speedSlow')?.checked) {
+                        rate = 0.8;
+                    } else if (document.getElementById('speedNormal')?.checked) {
+                        rate = 1.0;
+                    }
+                    speechService.speakSentence(sentence, rate);
                 };
 
                 // 訳ボタン
