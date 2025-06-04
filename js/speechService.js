@@ -32,8 +32,16 @@ export class SpeechService {
                 cb();
             }
         };
+
+        if (this.enVoice) {
+            cb();
+            return;
+        }
+
         load();
-        this.synth.addEventListener('voiceschanged', load);
+        if (!this.enVoice) {
+            this.synth.addEventListener('voiceschanged', load);
+        }
     }
 
     /**
