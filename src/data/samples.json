@@ -1,0 +1,44 @@
+{
+  "business": {
+    "beginner": [
+      "Let's schedule a meeting for tomorrow.",
+      "Could you send me the report by noon?"
+    ],
+    "intermediate": [
+      "Our quarterly earnings have exceeded expectations.",
+      "We need to streamline the approval process."
+    ],
+    "advanced": [
+      "The merger negotiations are proceeding smoothly despite the setbacks.",
+      "Our strategic outlook requires a comprehensive market analysis."
+    ]
+  },
+  "travel": {
+    "beginner": [
+      "Where is the nearest train station?",
+      "I'd like a ticket to Tokyo, please."
+    ],
+    "intermediate": [
+      "How long does the sightseeing bus tour take?",
+      "Is breakfast included with the room?"
+    ],
+    "advanced": [
+      "Could you recommend some hidden gems that locals love?",
+      "I'm interested in understanding the cultural significance of this festival."
+    ]
+  },
+  "daily": {
+    "beginner": [
+      "How's the weather today?",
+      "I'm going to the supermarket."
+    ],
+    "intermediate": [
+      "What do you usually do on weekends?",
+      "I'm thinking about starting a new hobby."
+    ],
+    "advanced": [
+      "It's important to balance work and personal life for mental well-being.",
+      "Could you share your thoughts on sustainable living?"
+    ]
+  }
+}
